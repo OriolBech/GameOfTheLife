@@ -162,6 +162,9 @@ function setupControlButtons() {
     
     var randomButton = document.getElementById("random");
     randomButton.onclick = randomButtonHandler;
+
+    var saveButton = document.getElementById("save");
+    saveButton.onclick = saveButtonHandler;
 }
 
 //realitzem un math.random per cada cel·la
@@ -207,6 +210,15 @@ function clearButtonHandler() {
         }
     }
 
+}
+
+function saveButtonHandler() {
+    var sinput = document.getElementById("sname");
+    var sname = sinput.value
+    if (sname != "") {
+        setCookie(sname, [grid, rows , cols]);
+    }
+   
 }
 
 // start/pause/continue el joc
@@ -298,6 +310,16 @@ function countNeighbors(row, col) {
     }
     return count;
 }
+
+//funcio per establir la cookie
+function setCookie(cname, cvalue, exdays) {
+    const d = new Date();
+    d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
+    let expires = "expires="+d.toUTCString();
+    document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+}
+
+
 
 // Inicialitzar tot el programa
 window.onload = initialize;
