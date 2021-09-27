@@ -128,3 +128,8 @@ table {
     flex-direction: row;
     align-items: center;
 }
+
+button {
+    margin-left: 5px;
+    margin-right: 5px;
+}
