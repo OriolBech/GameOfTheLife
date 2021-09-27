@@ -163,6 +163,9 @@ function setupControlButtons() {
     var randomButton = document.getElementById("random");
     randomButton.onclick = randomButtonHandler;
 
+    var speedButton = document.getElementById("speed");
+    speedButton.onclick = speedButtonHandler;
+
     var saveButton = document.getElementById("save");
     saveButton.onclick = saveButtonHandler;
 }
@@ -214,11 +217,18 @@ function clearButtonHandler() {
 
 function saveButtonHandler() {
     var sinput = document.getElementById("sname");
-    var sname = sinput.value
+    var sname = sinput.value;
     if (sname != "") {
-        setCookie(sname, [grid, rows , cols]);
+        setLocalStorage(sname, [grid, " " + rows , " " + cols]);
     }
    
+}
+
+function speedButtonHandler() {
+    var speedInput = document.getElementById("srange");
+    var srange = speedInput.value;
+
+    speed = srange;
 }
 
 // start/pause/continue el joc
@@ -312,9 +322,9 @@ function countNeighbors(row, col) {
 }
 
 //funcio per establir la cookie
-function setCookie(cname, cvalue) {
-    document.cookie = `${cname} = ${cvalue}; path=/`;
-    console.log(cname + "Added cookie");
+function setLocalStorage(cname, cvalue) {
+    localStorage.setItem(cname, cvalue);
+    console.log(cname + " Added to LocalStorage");
 }
 
 
