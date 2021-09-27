@@ -1,0 +1,129 @@
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+
+body {
+    margin: 0;
+    padding: 0;
+}
+
+h1 {
+    margin: 0;
+}
+
+.header {
+    width: 100vw;
+    height: 7.5vh;
+    background-color: aquamarine;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0px 6px 15px -2px #000000;
+}
+
+.title {
+    margin-top: auto;
+    margin-bottom: auto;
+    font-family: 'Press Start 2P', cursive;
+    margin-left: 2.5vw;
+}
+
+/* Formulari */
+
+.grid-form {
+    margin-left: 25%;
+    margin-right: 25%;
+    margin-top: 10%;
+    margin-bottom: 10%;
+    width: 50%;
+    height: 60%;
+    border-spacing: 0;
+    background-color: rgba(255, 255, 255, 0.952);
+    display: flex;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    flex-direction: column;
+    align-content: center;
+    align-items: center;
+    border-radius: 10px;
+}
+
+.list {
+    width: 50%;
+    height: 60%;
+    text-align: center;
+    background-color: #6161618c;
+}
+
+a {
+    text-decoration: none;
+    color: #000000;
+}
+
+
+/* Seleccio tamany */
+#windowPicker {
+    margin: 10%;
+    width: 80%;
+    height: 80%;
+    border-spacing: 0;
+    background-color: rgb(231, 231, 231);
+}
+
+#formSize {
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
+    display: flex;
+    flex-direction: row;
+}
+
+.input {
+    width: 100%;
+}
+
+.input:first {
+    margin-right: 10px;
+}
+
+/* Cuadricula Joc */
+#gridContainer {
+    width: 100vw;
+    height: 85vh;
+    background-color: rgb(34, 34, 34);
+    display: flex;
+    flex-direction: column;
+    background-image: url(./images/background.png);
+}
+
+td {
+    border: 1px solid #F1F5DA;
+    border-radius: 3px;
+    width: 10px;
+    height: 10px;
+}
+
+td.dead {
+    background-color: transparent;
+}
+
+td.live {
+    background-color: #CC4774;
+    border-radius: 10px;
+}
+
+table {
+    margin: 2%;
+    width: 96%;
+    height: 96%;
+    border-spacing: 0;
+    background-color: rgb(49, 49, 49);
+}
+
+#comGen {
+    color: black;
+}
+
+.footer {
+    width: 100vw;
+    height: 7.5vh;
+    background-color: aquamarine;
+    display: flex;
+    flex-direction: row;
+}

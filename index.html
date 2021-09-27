@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>GameOfLife</title>
+</head>
+<body>
+    <div class="header">
+        <h1 class="title">GameOfLife</h1>
+    </div>
+
+    <div id="gridContainer">
+        <form class="grid-form" action="./seed.php" method="post">
+            <h2>Selecciona una seed</h2>
+            <select class="list" name="seed" multiple>
+                <option value ="seed1">seed1</option>
+                <option value ="seed2">seed2</option>
+                <option value ="seed3">seed3</option>
+                <option value ="seed4">seed4</option>
+            </select> 
+            <input type="submit" value="Load Seed">
+            <button><a href="./game.html">New Seed</a></button>          
+        </form>
+    </div>
+
+    <div class="footer">
+
+    </div>
+</body>
+</html>
