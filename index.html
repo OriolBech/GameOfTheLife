@@ -5,29 +5,23 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <title>GameOfLife</title>
 </head>
 <body>
     <div class="header">
-        <h1 class="title">GameOfLife</h1>
+        <h1 class="title"><a href="./index.html">GameOfLife</a></h1>
     </div>
 
     <div id="gridContainer">
-        <form class="grid-form" action="./seed.php" method="post">
-            <h2>Selecciona una seed</h2>
-            <select class="list" name="seed" multiple>
-                <option value ="seed1">seed1</option>
-                <option value ="seed2">seed2</option>
-                <option value ="seed3">seed3</option>
-                <option value ="seed4">seed4</option>
-            </select> 
-            <input type="submit" value="Load Seed">
-            <button><a href="./game.html">New Seed</a></button>          
-        </form>
+        <div class="selectBox">
+            <a href="./newSeed.php"></a><button class="selectButtons">🚀 Nova Partida</button></a>
+            <a href="./loadSeed.html"><button class="selectButtons">💾 Carregar Partida</button></a>
+        </div>
     </div>
 
     <div class="footer">
-
+        <p>Projecte 1 DAW by Oriol Bech</p>
     </div>
 </body>
 </html>

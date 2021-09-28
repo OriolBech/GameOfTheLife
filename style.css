@@ -1,8 +1,10 @@
-@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans&display=swap');
 
 body {
     margin: 0;
     padding: 0;
+    font-family: 'Open Sans', sans-serif;
+    color: #30362F;
 }
 
 h1 {
@@ -12,17 +14,16 @@ h1 {
 .header {
     width: 100vw;
     height: 7.5vh;
-    background-color: aquamarine;
+    background-color: #011627;
     display: flex;
     flex-direction: column;
-    box-shadow: 0px 6px 15px -2px #000000;
 }
 
 .title {
     margin-top: auto;
     margin-bottom: auto;
-    font-family: 'Press Start 2P', cursive;
     margin-left: 2.5vw;
+    color: white;
 }
 
 /* Formulari */
@@ -35,30 +36,33 @@ h1 {
     width: 50%;
     height: 60%;
     border-spacing: 0;
-    background-color: rgba(255, 255, 255, 0.952);
     display: flex;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: white;
+    background-color: #011627;
+    border-radius: 20px;
     flex-direction: column;
     align-content: center;
     align-items: center;
-    border-radius: 10px;
+    box-shadow: 0px 0px 21px 2px rgba(0,0,0,0.51);
 }
 
 .list {
     width: 50%;
     height: 60%;
     text-align: center;
-    background-color: #6161618c;
+    background-color: #2020208c;
+    color: white;
 }
 
 a {
     text-decoration: none;
-    color: #000000;
+    font-style: unset;
+    color: white;
 }
 
 
-/* Seleccio tamany */
-#windowPicker {
+/* config/partida */
+.configBox {
     margin: 10%;
     width: 80%;
     height: 80%;
@@ -66,7 +70,7 @@ a {
     background-color: rgb(231, 231, 231);
 }
 
-#formSize {
+.formConfig {
     margin-left: auto;
     margin-right: auto;
     width: 50%;
@@ -86,15 +90,15 @@ a {
 #gridContainer {
     width: 100vw;
     height: 85vh;
-    background-color: rgb(34, 34, 34);
+    background-color: rgb(235, 235, 235);
     display: flex;
     flex-direction: column;
-    background-image: url(./images/background.png);
+    align-items: center;
+    justify-content: center;
 }
 
 td {
-    border: 1px solid #F1F5DA;
-    border-radius: 3px;
+    border: 1px solid #777777;
     width: 10px;
     height: 10px;
 }
@@ -109,13 +113,37 @@ td.live {
 }
 
 table {
-    margin: 2%;
-    width: 96%;
-    height: 96%;
+    width: 80%;
+    height: 80%;
     border-spacing: 0;
     background-color: rgb(49, 49, 49);
+    border: solid 1vw #011627;
+    box-shadow: 0px 0px 21px 5px rgba(0,0,0,0.51);
 }
 
+.selectBox {
+    margin-top: 37.5vh;
+    margin-bottom: 37.5vh;
+    max-height: 10vh;
+    max-width: 100vw;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    flex-direction: row;
+}
+
+.selectButtons {
+    width: 20vw;
+    height: 10vh;
+    background-color: #011627;
+    color: white;
+    border-radius: 10px;
+    font-size: 18px;
+    font-weight: 800;
+    box-shadow: 0px 0px 21px 1px rgba(0,0,0,0.51);
+}
+
+/* Comptador */
 #comGen {
     color: black;
 }
@@ -123,13 +151,16 @@ table {
 .footer {
     width: 100vw;
     height: 7.5vh;
-    background-color: aquamarine;
+    background-color: #011627;
     display: flex;
     flex-direction: row;
     align-items: center;
+    justify-content: center;
+    font-weight: 600;
 }
 
 button {
     margin-left: 5px;
     margin-right: 5px;
+    cursor: pointer;
 }

@@ -7,7 +7,7 @@ var grid = new Array(rows);
 var nextGrid = new Array(rows);
 
 var comGen = 0;
-var speed = 100;
+var speed = 500;
 var timer;
 var reproductionTime = 100;
 
@@ -49,46 +49,10 @@ function copyAndResetGrid() {
 
 // Initialize
 function initialize() {
-    //windowPicker();
     createTable();
     initializeGrids();
     resetGrids();
     setupControlButtons();
-}
-
-// funcio per desplegar una finestra per configurar la seed
-function windowPicker() {
-    var gridContainer = document.getElementById('gridContainer');
-    var windowPicker = document.createElement("div");
-    var formSize = document.createElement("form");
-    var inputX = document.createElement("input");
-    var inputY = document.createElement("input");
-    var submit = document.createElement("input");
-    
-    windowPicker.setAttribute("id", "windowPicker");
-    formSize.setAttribute("id", "formSize");
-    formSize.setAttribute("method", "post");
-    formSize.setAttribute("action", "");
-    inputX.setAttribute("id", "inputx");
-    inputY.setAttribute("id", "inputy");
-    inputX.setAttribute("class", "input");
-    inputY.setAttribute("class", "input");
-    submit.setAttribute("type", "submit");
-    submit.setAttribute("value", "Submit");       
-
-    gridContainer.appendChild(windowPicker);
-    windowPicker.appendChild(formSize);
-    formSize.appendChild(inputX);
-    formSize.appendChild(inputY);
-    formSize.appendChild(submit);
-
-    var x = document.getElementById('inputx').value;
-    var y = document.getElementById('inputy').value;
-
-    form.addEventListener('submit', (event) => {
-        console.log(x + '' + y);
-    });
-
 }
 
 // Lay out the board
@@ -219,7 +183,7 @@ function saveButtonHandler() {
     var sinput = document.getElementById("sname");
     var sname = sinput.value;
     if (sname != "") {
-        setLocalStorage(sname, [grid, " " + rows , " " + cols]);
+        saveData(sname, [grid, " " + rows , " " + cols]);
     }
    
 }
@@ -322,9 +286,9 @@ function countNeighbors(row, col) {
 }
 
 //funcio per establir la cookie
-function setLocalStorage(cname, cvalue) {
-    localStorage.setItem(cname, cvalue);
-    console.log(cname + " Added to LocalStorage");
+function saveData(cname, cvalue) {
+    sessionStorage.setItem(cname, cvalue);
+    console.log(cname + " Saved Data");
 }
 
 
