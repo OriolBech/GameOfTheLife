@@ -183,7 +183,7 @@ function saveButtonHandler() {
     var sinput = document.getElementById("sname");
     var sname = sinput.value;
     if (sname != "") {
-        saveData(sname, [grid, " " + rows , " " + cols]);
+        saveData(sname, [grid, "&" + rows , "&" + cols]);
     }
    
 }
