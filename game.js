@@ -131,7 +131,7 @@ function setupControlButtons() {
     speedButton.onclick = speedButtonHandler;
 
     var saveButton = document.getElementById("save");
-    saveButton.onclick = saveButtonHandler;
+    saveButton.onclick = saveData;
 }
 
 //realitzem un math.random per cada cel·la
@@ -179,13 +179,12 @@ function clearButtonHandler() {
 
 }
 
-function saveButtonHandler() {
-    var sinput = document.getElementById("sname");
-    var sname = sinput.value;
-    if (sname != "") {
-        saveData(sname, [grid, "&" + rows , "&" + cols]);
-    }
-   
+function saveData() {
+    let route = window.location.href;
+    let nseed = route.split('?');
+    nseed = nseed[1];
+    document.cookie = "&" + nseed + "=" + [grid, "&" + rows , "&" + cols];
+    console.log(nseed + " Saved Data");
 }
 
 function speedButtonHandler() {
@@ -283,12 +282,6 @@ function countNeighbors(row, col) {
         if (grid[row+1][col+1] == 1) count++;
     }
     return count;
-}
-
-//funcio per establir la cookie
-function saveData(cname, cvalue) {
-    sessionStorage.setItem(cname, cvalue);
-    console.log(cname + " Saved Data");
 }
 
 
