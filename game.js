@@ -1,15 +1,40 @@
-var rows = 38;
-var cols = 100;
+var route = window.location.href;
+var nseed = route.split('?');
+nseed = nseed[1];
+
+console.log("Data: " + getCookie(nseed));
+
+var rows = getRows();
+var cols = getCols();
 
 var playing = false;
+var loaded = false;
 
 var grid = new Array(rows);
 var nextGrid = new Array(rows);
 
-var comGen = 0;
-var speed = 500;
+var comGen = getCom();
 var timer;
-var reproductionTime = 100;
+var reproductionTime = 200;
+
+function checkStartingCells() {
+    if(getCells() != "empty") {
+        grid = getCells();
+        nextGrid = getCells();
+        for (var i = 0; i < rows; i++) {
+            for (var j = 0; j < cols; j++) {
+                var cell = document.getElementById(i + "_" + j);
+                if (grid[i][j] == 0) {
+                    cell.setAttribute("class", "dead");
+                } else {
+                    cell.setAttribute("class", "live");
+                }
+            }
+        }
+        var startButton = document.getElementById('start');
+        startButton.innerHTML = "Continue";
+    }
+}
 
 // funcio per inicialitzar els taulells
 function initializeGrids() {
@@ -17,14 +42,6 @@ function initializeGrids() {
         grid[i] = new Array(cols);
         nextGrid[i] = new Array(cols);
     }
-}
-
-function sleep(milliseconds) {
-    const date = Date.now();
-    let currentDate = null;
-    do {
-      currentDate = Date.now();
-    } while (currentDate - date < milliseconds);
 }
 
 // funcio per resetejar el taulell
@@ -50,8 +67,11 @@ function copyAndResetGrid() {
 // Initialize
 function initialize() {
     createTable();
-    initializeGrids();
-    resetGrids();
+    checkStartingCells();
+    if(getCells() == "empty") {
+        initializeGrids();
+        resetGrids();
+    }
     setupControlButtons();
 }
 
@@ -80,41 +100,40 @@ function createTable() {
         table.appendChild(tr);
     }
     gridContainer.appendChild(table);
-    }
+}
 
-    function cellClickHandler() {
-        var rowcol = this.id.split("_");
-        var row = rowcol[0];
-        var col = rowcol[1];
-        
-        var classes = this.getAttribute("class");
-        if(classes.indexOf("live") > -1) {
-            this.setAttribute("class", "dead");
-            grid[row][col] = 0;
-        } else {
-            this.setAttribute("class", "live");
-            grid[row][col] = 1;
-        }
-        
+function cellClickHandler() {
+    var rowcol = this.id.split("_");
+    var row = rowcol[0];
+    var col = rowcol[1];
+    
+    var classes = this.getAttribute("class");
+    if(classes.indexOf("live") > -1) {
+        this.setAttribute("class", "dead");
+        grid[row][col] = 0;
+    } else {
+        this.setAttribute("class", "live");
+        grid[row][col] = 1;
     }
+    
+}
 
-    function updateView() {
-        comGen += 1;
-        var generation = document.getElementById("comGen");
-        generation.value = comGen;
-        console.log(comGen);
-        for (var i = 0; i < rows; i++) {
-            for (var j = 0; j < cols; j++) {
-                var cell = document.getElementById(i + "_" + j);
-                if (grid[i][j] == 0) {
-                    cell.setAttribute("class", "dead");
-                } else {
-                    cell.setAttribute("class", "live");
-                }
+function updateView() {
+    comGen += 1;
+    var generation = document.getElementById("comGen");
+    generation.value = comGen;
+    console.log(comGen);
+    for (var i = 0; i < rows; i++) {
+        for (var j = 0; j < cols; j++) {
+            var cell = document.getElementById(i + "_" + j);
+            if (grid[i][j] == 0) {
+                cell.setAttribute("class", "dead");
+            } else {
+                cell.setAttribute("class", "live");
             }
         }
-        sleep(speed);
     }
+}
 
 function setupControlButtons() {
 
@@ -180,18 +199,65 @@ function clearButtonHandler() {
 }
 
 function saveData() {
-    let route = window.location.href;
-    let nseed = route.split('?');
-    nseed = nseed[1];
-    document.cookie = "&" + nseed + "=" + [grid, "&" + rows , "&" + cols];
-    console.log(nseed + " Saved Data");
+    var value = JSON.stringify({'cells': grid, 'rows': rows, 'cols': cols, 'com': comGen, 'dateCreation': getCreationDate()});
+    document.cookie = "&" + nseed + "=" + value;
+    console.log(nseed + " Saved Data" + getCookie(nseed));
+}
+
+function getCookie(cname) {
+    cname = "&" + cname; 
+    let name = cname + "=";
+    let decodedCookie = decodeURIComponent(document.cookie);
+    let ca = decodedCookie.split(';');
+    for(let i = 0; i <ca.length; i++) {
+        let c = ca[i];
+        while (c.charAt(0) == ' ') {
+        c = c.substring(1);
+        }
+        if (c.indexOf(name) == 0) {
+        return c.substring(name.length, c.length);
+        }
+    }
+    return "";
+}
+
+
+
+function getRows () {
+    var cookie = getCookie(nseed);
+    var object = JSON.parse(cookie);
+    return object["rows"];
+}
+
+function getCols () {
+    var cookie = getCookie(nseed);
+    var object = JSON.parse(cookie);
+    return object["cols"];
+}
+
+function getCells () {
+    var cookie = getCookie(nseed);
+    var object = JSON.parse(cookie);
+    return object["cells"];
+}
+
+function getCom () {
+    var cookie = getCookie(nseed);
+    var object = JSON.parse(cookie);
+    return object["com"];
+}
+
+function getCreationDate () {
+    var cookie = getCookie(nseed);
+    var object = JSON.parse(cookie);
+    return object["dateCreation"];
 }
 
 function speedButtonHandler() {
     var speedInput = document.getElementById("srange");
     var srange = speedInput.value;
 
-    speed = srange;
+    reproductionTime = srange;
 }
 
 // start/pause/continue el joc

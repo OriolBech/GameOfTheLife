@@ -18,10 +18,11 @@
                 $ncols = validate_input($_POST["ncols"]);
                 $nrows = validate_input($_POST["nrows"]);
             }
-
-            $value = "1&{$nrows}&{$ncols}";
+            
+            $date = date("Y-m-d H:i:s");
+            $value = ["cells" => "empty", "rows" => $nrows, "cols" => $ncols, "com" => 0,"dateCreation" => $date];
         
-            setcookie("&" . $nseed, $value);
+            setcookie("&" . $nseed, json_encode($value));
 
             header('Location: /JocDeLaVida/game.html?' . $nseed);
             exit();
@@ -46,9 +47,9 @@
             <p>Nom partida</p>
             <input type="text" name="nseed" id="nseed" required></input>
             <p>Numero columnes</p>
-            <input type="text" name="ncols" id="ncols" required></input>
+            <input type="number" name="ncols" id="ncols" required></input>
             <p>Numero files</p>
-            <input type="text" name="nrows" id="nrows" required></input>
+            <input type="number" name="nrows" id="nrows" required></input>
             <input type="submit">
         </form>
     </div>
