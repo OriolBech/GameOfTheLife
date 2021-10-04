@@ -45,12 +45,12 @@
         <form class="grid-form" action="" method="post">
             <h2>Configura la teva partida</h2>
             <p>Nom partida</p>
-            <input type="text" name="nseed" id="nseed" required></input>
+            <input class="ninput" type="text" name="nseed" id="nseed" required></input>
             <p>Numero columnes</p>
-            <input type="number" name="ncols" id="ncols" required></input>
+            <input class="ninput" type="number" name="ncols" id="ncols" min="4" max="25" required></input>
             <p>Numero files</p>
-            <input type="number" name="nrows" id="nrows" required></input>
-            <input type="submit">
+            <input class="ninput" type="number" name="nrows" id="nrows" min="4" max="25" required></input>
+            <input class="sbutton" type="submit">
         </form>
     </div>
 

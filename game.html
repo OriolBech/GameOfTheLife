@@ -14,19 +14,25 @@
 
     <div id="gridContainer">
 
+        <div id="stats-menu">
+            <div>Generació: <span id="comGen">0</span></div>
+            <div>&nbsp;Viues: <span id="comAlive">0</span></div>
+            <div>&nbsp;Mortes: <span id="comDead">0</span></div>
+        </div>
+
+        <div id="control-menu">
+            <button class="gbutton" id="start">Start</button>
+            <button class="gbutton" id="random">Random</button>
+            <button class="gbutton" id="clear">Clear</button>
+            <label for="speed">Speed:</label>
+            <input type="range" class="srange" id="srange" name="speed" min="200" max="800">
+            <button class="gbutton" id="speed">SetSpeed</button>
+            <button class="gbutton" id="save">Save</button>
+        </div>
     </div>
 
     <div class="footer">
-        <button id="start">Start</button>
-        <button id="random">Random</button>
-        <button id="clear">Clear</button>
-        <div>
-            <label for="speed">Speed:</label>
-            <input type="range" class="srange" id="srange" name="speed" min="200" value="300" max="400">
-            <button id="speed">SetSpeed</button>
-        </div>
-        <button id="save">Save</button>
-        
+        <p>Projecte 1 DAW by Oriol Bech</p>
     </div>
 
     <script src="./game.js"></script>

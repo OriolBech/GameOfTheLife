@@ -33,8 +33,9 @@ h1 {
     margin-right: 25%;
     margin-top: 10%;
     margin-bottom: 10%;
+    min-height: 40%;
     width: 50%;
-    height: 60%;
+    height: auto;
     border-spacing: 0;
     display: flex;
     color: white;
@@ -49,9 +50,10 @@ h1 {
 .list {
     width: 50%;
     height: 60%;
+    border-radius: 10px 10px 10px 10px;
+    font-size: 18px;
+    padding: 5px;
     text-align: center;
-    background-color: #2020208c;
-    color: white;
 }
 
 a {
@@ -63,19 +65,59 @@ a {
 
 /* config/partida */
 
-.input {
-    width: 100%;
-}
-
-.input:first {
-    margin-right: 10px;
+.ninput {
+    width: 30%;
+    padding: 12px 20px;
+    font-size: 20px;
+    text-align: center;
 }
 
 .srange {
     direction: rtl;
 }
 
+.sbutton {
+    background-color: #011627;
+    border: 2px solid #fdfdfd;
+    color: white;
+    padding: 16px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    transition-duration: 0.4s;
+    cursor: pointer;
+    margin-top: 15px;
+    margin-bottom: 19.92px;
+}
+
+.sbutton:hover {
+    background-color: white; 
+    color: black;
+}
+
+.gbutton {
+    background-color: #011627;
+    border: 2px solid #fdfdfd;
+    color: white;
+    padding: 16px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    transition-duration: 0.4s;
+    cursor: pointer;
+    margin-right: 10px;
+    margin-left: 10px;
+}
+
+.gbutton:hover {
+    background-color: white; 
+    color: black;
+}
+
 /* Cuadricula Joc */
+
 #gridContainer {
     width: 100vw;
     height: 85vh;
@@ -87,9 +129,7 @@ a {
 }
 
 td {
-    border: 1px solid #777777;
-    width: 10px;
-    height: 10px;
+    border: 4px solid #3a3a3a;
 }
 
 td.dead {
@@ -109,6 +149,35 @@ table {
     border: solid 1vw #011627;
     box-shadow: 0px 0px 21px 5px rgba(0,0,0,0.51);
 }
+
+#stats-menu {
+    background-color: #011627;
+    width: 50%;
+    min-height: 8%;
+    display: flex;
+    flex-direction: row;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 20px;
+    margin-top: 20px;
+}
+
+#comgen {
+    border-right: 2px solid white;
+}
+
+#control-menu {
+    background-color: #011627;
+    width: auto;
+    height: auto;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    padding: 10px;
+}
+
+/* index start page */
 
 .selectBox {
     margin-top: 37.5vh;
@@ -146,6 +215,7 @@ table {
     align-items: center;
     justify-content: center;
     font-weight: 600;
+    color: white;
 }
 
 button {

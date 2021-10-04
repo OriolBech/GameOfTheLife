@@ -17,6 +17,7 @@ var comGen = getCom();
 var timer;
 var reproductionTime = 200;
 
+//Comprovem si es la primera partida o ja esta començada, si no esta començada carreguem la configuracio.
 function checkStartingCells() {
     if(getCells() != "empty") {
         grid = getCells();
@@ -75,22 +76,20 @@ function initialize() {
     setupControlButtons();
 }
 
-// Lay out the board
+// Creem la taula del joc
 function createTable() {
     var gridContainer = document.getElementById('gridContainer');
     if (!gridContainer) {
         // Throw error
         console.error("Error: No div per la taula!");
     }
-    var generation = document.createElement("input");
-    generation.setAttribute("id", "comGen");
-    generation.value = comGen;
-    gridContainer.appendChild(generation);
+    var generacio = document.getElementById("comGen");
+    generacio.innerHTML(comGen);
     var table = document.createElement("table");
     
     for (var i = 0; i < rows; i++) {
         var tr = document.createElement("tr");
-        for (var j = 0; j < cols; j++) {//
+        for (var j = 0; j < cols; j++) {
             var cell = document.createElement("td");
             cell.setAttribute("id", i + "_" + j);
             cell.setAttribute("class", "dead");
@@ -99,7 +98,9 @@ function createTable() {
         }
         table.appendChild(tr);
     }
+    
     gridContainer.appendChild(table);
+    table.after(document.getElementById("control-menu"))
 }
 
 function cellClickHandler() {

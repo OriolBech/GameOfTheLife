@@ -36,7 +36,7 @@
                    }
                 ?>
             </select> 
-            <input type="submit">       
+            <input class="sbutton" type="submit">       
         </form>
     </div>
 
