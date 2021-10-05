@@ -15,7 +15,7 @@ var nextGrid = new Array(rows);
 
 var comGen = getCom();
 var timer;
-var reproductionTime = document.getElementById("srange").value;
+var reproductionTime = 450;
 var generacio = document.getElementById("comGen");
 var comViues = 0;
 var comMortes = 0;
@@ -37,7 +37,7 @@ function checkStartingCells() {
             }
         }
         var startButton = document.getElementById('start');
-        startButton.innerHTML = "Continue";
+        startButton.innerHTML = "Continuar";
     }
 }
 
@@ -79,6 +79,7 @@ function initialize() {
     }
     setupControlButtons();
     countAliveDeadCells();
+    sliderVelocitat();
 }
 
 // Creem la taula del joc
@@ -142,6 +143,14 @@ function updateView() {
         }
     }
 }
+
+function sliderVelocitat() {
+    var velocitat = document.getElementById("speed");
+
+    velocitat.oninput = function () {
+        reproductionTime = this.value * 90;
+    };
+  }
 
 function setupControlButtons() {
 
@@ -281,12 +290,12 @@ function startButtonHandler() {
     if (playing) {
         console.log("Pause the game");
         playing = false;
-        this.innerHTML = "Continue";
+        this.innerHTML = "Continuar";
         clearTimeout(timer);
     } else {
         console.log("Continue the game");
         playing = true;
-        this.innerHTML = "Pause";
+        this.innerHTML = "Pausar";
         play();
     }
 }
