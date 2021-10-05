@@ -15,7 +15,11 @@ var nextGrid = new Array(rows);
 
 var comGen = getCom();
 var timer;
-var reproductionTime = 200;
+var reproductionTime = document.getElementById("srange").value;
+var generacio = document.getElementById("comGen");
+var comViues = 0;
+var comMortes = 0;
+generacio.innerHTML = comGen;
 
 //Comprovem si es la primera partida o ja esta començada, si no esta començada carreguem la configuracio.
 function checkStartingCells() {
@@ -74,6 +78,7 @@ function initialize() {
         resetGrids();
     }
     setupControlButtons();
+    countAliveDeadCells();
 }
 
 // Creem la taula del joc
@@ -83,8 +88,6 @@ function createTable() {
         // Throw error
         console.error("Error: No div per la taula!");
     }
-    var generacio = document.getElementById("comGen");
-    generacio.innerHTML(comGen);
     var table = document.createElement("table");
     
     for (var i = 0; i < rows; i++) {
@@ -121,12 +124,16 @@ function cellClickHandler() {
 
 function updateView() {
     comGen += 1;
+    generacio.innerHTML = comGen;
     var generation = document.getElementById("comGen");
-    generation.value = comGen;
+    generation.innerHTML = comGen;
     console.log(comGen);
+    countAliveDeadCells();
     for (var i = 0; i < rows; i++) {
         for (var j = 0; j < cols; j++) {
             var cell = document.getElementById(i + "_" + j);
+            comMortes = 0;
+            comViues = 0;
             if (grid[i][j] == 0) {
                 cell.setAttribute("class", "dead");
             } else {
@@ -146,9 +153,6 @@ function setupControlButtons() {
     
     var randomButton = document.getElementById("random");
     randomButton.onclick = randomButtonHandler;
-
-    var speedButton = document.getElementById("speed");
-    speedButton.onclick = speedButtonHandler;
 
     var saveButton = document.getElementById("save");
     saveButton.onclick = saveData;
@@ -179,6 +183,10 @@ function clearButtonHandler() {
     startButton.innerHTML = "Start";    
     clearTimeout(timer);
     
+    comGen = 0;
+    comMortes = 0;
+    comViues = 0;
+
     var cellsList = document.getElementsByClassName("live");
     // convertir array primer, sino, estarem treballant amb la llista de nodes vius
     // i l'actualitzacio no funcionaras
@@ -254,11 +262,18 @@ function getCreationDate () {
     return object["dateCreation"];
 }
 
-function speedButtonHandler() {
-    var speedInput = document.getElementById("srange");
-    var srange = speedInput.value;
-
-    reproductionTime = srange;
+function countAliveDeadCells() {
+    for (var i = 0; i < rows; i++) {
+        for (var j = 0; j < cols; j++) {
+            if (grid[i][j] == 0) {
+                comMortes += 1;
+                document.getElementById("comDead").innerHTML = comMortes;
+            } else {
+                comViues += 1;
+                document.getElementById("comAlive").innerHTML = comViues;
+            }
+        }
+    }
 }
 
 // start/pause/continue el joc

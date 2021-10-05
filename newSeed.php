@@ -50,7 +50,7 @@
             <input class="ninput" type="number" name="ncols" id="ncols" min="4" max="25" required></input>
             <p>Numero files</p>
             <input class="ninput" type="number" name="nrows" id="nrows" min="4" max="25" required></input>
-            <input class="sbutton" type="submit">
+            <input class="sbutton" value="Crear" type="submit">
         </form>
     </div>
 

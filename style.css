@@ -72,9 +72,7 @@ a {
     text-align: center;
 }
 
-.srange {
-    direction: rtl;
-}
+
 
 .sbutton {
     background-color: #011627;
@@ -100,7 +98,7 @@ a {
     background-color: #011627;
     border: 2px solid #fdfdfd;
     color: white;
-    padding: 16px 32px;
+    padding: 12px 25px;
     text-align: center;
     text-decoration: none;
     display: inline-block;
@@ -137,13 +135,12 @@ td.dead {
 }
 
 td.live {
-    background-color: #CC4774;
-    border-radius: 10px;
+    background-color: #e78a34;
 }
 
 table {
-    width: 80%;
-    height: 80%;
+    width: 70%;
+    height: 70%;
     border-spacing: 0;
     background-color: rgb(49, 49, 49);
     border: solid 1vw #011627;
@@ -162,19 +159,33 @@ table {
     margin-top: 20px;
 }
 
-#comgen {
+.elementStat {
     border-right: 2px solid white;
+    height: 100%;
+    width: 33%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 20px;
+}
+
+.elementStat:last-child {
+    border-right: none;
 }
 
 #control-menu {
     background-color: #011627;
     width: auto;
     height: auto;
+    color: white;
     margin-left: auto;
     margin-right: auto;
     margin-top: 20px;
     margin-bottom: 20px;
-    padding: 10px;
+    padding-top: 10px;
+    padding-bottom: 10px;
 }
 
 /* index start page */
@@ -199,12 +210,12 @@ table {
     font-size: 18px;
     font-weight: 800;
     box-shadow: 0px 0px 21px 1px rgba(0,0,0,0.51);
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
 }
 
-/* Comptador */
-#comGen {
-    color: black;
-}
 
 .footer {
     width: 100vw;
@@ -223,3 +234,27 @@ button {
     margin-right: 5px;
     cursor: pointer;
 }
+
+/* Icons */
+
+.gg-add {
+    margin-right: 10px;
+
+}
+
+.gg-software-upload {
+    margin-right: 10px;
+}
+
+.gg-close-o {
+    margin-left: 10px;
+}
+
+.gg-media-live {
+    margin-left: 10px;
+}
+
+.gg-insights {
+    margin-left: 10px;
+}
+

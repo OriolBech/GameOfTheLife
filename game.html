@@ -5,6 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
+    <link href='https://css.gg/css' rel='stylesheet'>
     <title>GameOfLife</title>
 </head>
 <body>
@@ -15,19 +16,18 @@
     <div id="gridContainer">
 
         <div id="stats-menu">
-            <div>Generació: <span id="comGen">0</span></div>
-            <div>&nbsp;Viues: <span id="comAlive">0</span></div>
-            <div>&nbsp;Mortes: <span id="comDead">0</span></div>
+            <div class="elementStat">Generació:&nbsp;<span id="comGen">0</span><i class="gg-insights"></i></div>
+            <div class="elementStat">&nbsp;Viues:&nbsp;<span id="comAlive">0</span><i class="gg-media-live"></i></div>
+            <div class="elementStat">&nbsp;Mortes:&nbsp;<span id="comDead">0</span><i class="gg-close-o"></i></div>
         </div>
 
         <div id="control-menu">
-            <button class="gbutton" id="start">Start</button>
-            <button class="gbutton" id="random">Random</button>
-            <button class="gbutton" id="clear">Clear</button>
-            <label for="speed">Speed:</label>
-            <input type="range" class="srange" id="srange" name="speed" min="200" max="800">
-            <button class="gbutton" id="speed">SetSpeed</button>
-            <button class="gbutton" id="save">Save</button>
+            <button class="gbutton" id="start">Començar</button>
+            <button class="gbutton" id="random">Aleatori</button>
+            <button class="gbutton" id="clear">Netejar</button>
+            <label for="speed">Velocitat:</label>
+            <input type="range" class="srange" id="srange" name="speed" min="0" max="1000">
+            <button class="gbutton" id="save">Guardar</button>
         </div>
     </div>
 
