@@ -18,6 +18,8 @@
                 $ncols = validate_input($_POST["ncols"]);
                 $nrows = validate_input($_POST["nrows"]);
             }
+
+            echo "<script>console.log('$cName' +  '$value')</script>";
             
             $date = date("Y-m-d H:i:s");
             $value = ["cells" => "empty", "rows" => $nrows, "cols" => $ncols, "com" => 0,"dateCreation" => $date];
@@ -29,10 +31,10 @@
         }
         
         function validate_input($data) {
-        $data = str_replace(' ', '', $data);
-        $data = stripslashes($data);
-        $data = htmlspecialchars($data);
-        return $data;
+            $data = str_replace(' ', '', $data);
+            $data = stripslashes($data);
+            $data = htmlspecialchars($data);
+            return $data;
         }
         
     
@@ -47,9 +49,9 @@
             <p>Nom partida</p>
             <input class="ninput" type="text" name="nseed" id="nseed" required></input>
             <p>Numero columnes</p>
-            <input class="ninput" type="number" name="ncols" id="ncols" min="4" max="25" required></input>
+            <input class="ninput" type="number" name="ncols" id="ncols" min="4" max="20" required></input>
             <p>Numero files</p>
-            <input class="ninput" type="number" name="nrows" id="nrows" min="4" max="25" required></input>
+            <input class="ninput" type="number" name="nrows" id="nrows" min="4" max="20" required></input>
             <input class="sbutton" value="Crear" type="submit">
         </form>
     </div>

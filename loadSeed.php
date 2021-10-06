@@ -14,8 +14,15 @@
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
             if(!empty($_POST['seed'])) {
                 $selected = $_POST['seed'];
-                header('Location: /JocDeLaVida/game.html?' . $selected);
-                exit();
+                if($_POST['send']=='Carregar') {
+                    header('Location: /JocDeLaVida/game.html?' . $selected);
+                    exit();
+                } else if($_POST['send']=='Esborrar') {
+                    setcookie("&" . $selected, "", time()-3600);
+                    header('Location: /JocDeLaVida/loadSeed.php');
+                    exit();
+                }
+                
             }
         }
     ?>
@@ -35,8 +42,11 @@
                         }   
                    }
                 ?>
-            </select> 
-            <input class="sbutton" value="Carregar" type="submit">   
+            </select>
+            <div>
+                <input class="sbutton" name="send" value="Carregar" type="submit">
+                <input class="sbutton" name="send" value="Esborrar" type="submit">
+            </div> 
         </form>
     </div>
 

@@ -126,8 +126,6 @@ function cellClickHandler() {
 function updateView() {
     comGen += 1;
     generacio.innerHTML = comGen;
-    var generation = document.getElementById("comGen");
-    generation.innerHTML = comGen;
     console.log(comGen);
     countAliveDeadCells();
     for (var i = 0; i < rows; i++) {
