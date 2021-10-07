@@ -18,7 +18,7 @@
                 $nrows = validate_input($_POST["nrows"]);
             }
             
-            $date = date("Y-m-d H:i:s");
+            $date = date("Y-m-d");
             $value = ["cells" => "empty", "rows" => $nrows, "cols" => $ncols, "com" => 0,"dateCreation" => $date];
         
             setcookie("&" . $nseed, json_encode($value), time() + (86400 * 30), "/");

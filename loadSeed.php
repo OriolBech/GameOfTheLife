@@ -36,8 +36,10 @@
             <select class="list" id="list" name="seed" multiple>
                 <?php foreach ($_COOKIE as $key=>$value) {
                         if(substr($key,0,1) == '&') {
+                            $obj = json_decode($value);
+                            $date = $obj->{'dateCreation'};
                             $key = substr($key,1, strlen($key));
-                            echo "<option value=" . $key . ">{$key}</option>";
+                            echo "<option value=" . $key . ">{$key} - ({$date})</option>";
                         }   
                    }
                 ?>

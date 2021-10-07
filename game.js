@@ -242,6 +242,7 @@ function getCookie(cname) {
 function getRows () {
     var cookie = getCookie(nseed);
     var object = JSON.parse(cookie);
+    console.log(cookie);
     return object["rows"];
 }
 
