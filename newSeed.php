@@ -23,8 +23,7 @@
         
             setcookie("&" . $nseed, json_encode($value));
 
-            header('Location: /game.html?' . $nseed);
-            exit();
+            echo "<script> location.replace('game.html?" . $nseed . "'); </script>";
         }
         
         function validate_input($data) {

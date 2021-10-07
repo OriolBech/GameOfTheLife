@@ -16,11 +16,11 @@
                 $selected = $_POST['seed'];
                 if($_POST['send']=='Carregar') {
                     header('Location: /game.html?' . $selected);
-                    exit();
+                    echo "<script> location.replace('game.html?" . $selected . "'); </script>";
                 } else if($_POST['send']=='Esborrar') {
                     setcookie("&" . $selected, "", time()-3600);
                     header('Location: /loadSeed.php');
-                    exit();
+                    echo "<script> location.replace('loadSeed.php'); </script>";
                 }
                 
             }
