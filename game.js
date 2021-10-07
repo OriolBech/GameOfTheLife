@@ -2,10 +2,8 @@ var route = window.location.href;
 var nseed = route.split('?');
 nseed = nseed[1];
 
-console.log("Data: " + getCookie(nseed));
-
-var rows = getRows();
-var cols = getCols();
+var rows = getData("rows");
+var cols = getData("cols");
 
 var playing = false;
 var loaded = false;
@@ -13,7 +11,7 @@ var loaded = false;
 var grid = new Array(rows);
 var nextGrid = new Array(rows);
 
-var comGen = getCom();
+var comGen = getData("com");
 var timer;
 var reproductionTime = 450;
 var generacio = document.getElementById("comGen");
@@ -23,9 +21,9 @@ generacio.innerHTML = comGen;
 
 //Comprovem si es la primera partida o ja esta començada, si no esta començada carreguem la configuracio.
 function checkStartingCells() {
-    if(getCells() != "empty") {
-        grid = getCells();
-        nextGrid = getCells();
+    if(getData("cells") != "empty") {
+        grid = getData("cells");
+        nextGrid = getData("cells");
         for (var i = 0; i < rows; i++) {
             for (var j = 0; j < cols; j++) {
                 var cell = document.getElementById(i + "_" + j);
@@ -73,7 +71,7 @@ function copyAndResetGrid() {
 function initialize() {
     createTable();
     checkStartingCells();
-    if(getCells() == "empty") {
+    if(getData("cells") == "empty") {
         initializeGrids();
         resetGrids();
     }
@@ -215,7 +213,7 @@ function clearButtonHandler() {
 }
 
 function saveData() {
-    var value = JSON.stringify({'cells': grid, 'rows': rows, 'cols': cols, 'com': comGen, 'dateCreation': getCreationDate()});
+    var value = JSON.stringify({'cells': grid, 'rows': rows, 'cols': cols, 'com': comGen, 'dateCreation': getData("dateCreation")});
     document.cookie = "&" + nseed + "=" + value;
     console.log(nseed + " Saved Data" + getCookie(nseed));
 }
@@ -237,37 +235,10 @@ function getCookie(cname) {
     return "";
 }
 
-
-
-function getRows () {
+function getData (type) {
     var cookie = getCookie(nseed);
     var object = JSON.parse(cookie);
-    console.log(cookie);
-    return object["rows"];
-}
-
-function getCols () {
-    var cookie = getCookie(nseed);
-    var object = JSON.parse(cookie);
-    return object["cols"];
-}
-
-function getCells () {
-    var cookie = getCookie(nseed);
-    var object = JSON.parse(cookie);
-    return object["cells"];
-}
-
-function getCom () {
-    var cookie = getCookie(nseed);
-    var object = JSON.parse(cookie);
-    return object["com"];
-}
-
-function getCreationDate () {
-    var cookie = getCookie(nseed);
-    var object = JSON.parse(cookie);
-    return object["dateCreation"];
+    return object[type];
 }
 
 function countAliveDeadCells() {
