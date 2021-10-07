@@ -8,7 +8,6 @@
     <title>GameOfTheLife</title>
 </head>
 <body>
-
     <?php 
         $nseed = $ncols = $nrows = "";
 
@@ -34,8 +33,6 @@
             $data = htmlspecialchars($data);
             return $data;
         }
-        
-    
     ?>
     <div class="header">
         <h1 class="title"><a href="./index.html">GameOfTheLife</a></h1>

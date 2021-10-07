@@ -26,7 +26,6 @@
             }
         }
     ?>
-
     <div class="header">
         <h1 class="title"><a href="./index.html">GameOfTheLife</a></h1>
     </div>
