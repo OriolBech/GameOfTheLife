@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
-    <title>GameOfLife</title>
+    <title>GameOfTheLife</title>
 </head>
 <body>
 
@@ -18,15 +18,13 @@
                 $ncols = validate_input($_POST["ncols"]);
                 $nrows = validate_input($_POST["nrows"]);
             }
-
-            echo "<script>console.log('$cName' +  '$value')</script>";
             
             $date = date("Y-m-d H:i:s");
             $value = ["cells" => "empty", "rows" => $nrows, "cols" => $ncols, "com" => 0,"dateCreation" => $date];
         
             setcookie("&" . $nseed, json_encode($value));
 
-            header('Location: /JocDeLaVida/game.html?' . $nseed);
+            header('Location: /game.html?' . $nseed);
             exit();
         }
         
@@ -40,7 +38,7 @@
     
     ?>
     <div class="header">
-        <h1 class="title"><a href="./index.html">GameOfLife</a></h1>
+        <h1 class="title"><a href="./index.html">GameOfTheLife</a></h1>
     </div>
 
     <div id="gridContainer">

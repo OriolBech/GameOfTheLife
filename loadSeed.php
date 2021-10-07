@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
-    <title>GameOfLife</title>
+    <title>GameOfTheLife</title>
 </head>
 <body>
     <?php
@@ -15,11 +15,11 @@
             if(!empty($_POST['seed'])) {
                 $selected = $_POST['seed'];
                 if($_POST['send']=='Carregar') {
-                    header('Location: /JocDeLaVida/game.html?' . $selected);
+                    header('Location: /game.html?' . $selected);
                     exit();
                 } else if($_POST['send']=='Esborrar') {
                     setcookie("&" . $selected, "", time()-3600);
-                    header('Location: /JocDeLaVida/loadSeed.php');
+                    header('Location: /loadSeed.php');
                     exit();
                 }
                 
@@ -28,7 +28,7 @@
     ?>
 
     <div class="header">
-        <h1 class="title"><a href="./index.html">GameOfLife</a></h1>
+        <h1 class="title"><a href="./index.html">GameOfTheLife</a></h1>
     </div>
 
     <div id="gridContainer">
