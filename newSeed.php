@@ -21,7 +21,7 @@
             $date = date("Y-m-d H:i:s");
             $value = ["cells" => "empty", "rows" => $nrows, "cols" => $ncols, "com" => 0,"dateCreation" => $date];
         
-            setcookie("&" . $nseed, json_encode($value), ime() + (86400 * 30), "path=/");
+            setcookie("&" . $nseed, json_encode($value), time() + (86400 * 30), "path=/");
 
             echo "<script> location.replace('game.html?" . $nseed . "'); </script>";
         }
