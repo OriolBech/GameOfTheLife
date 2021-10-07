@@ -345,7 +345,5 @@ function countNeighbors(row, col) {
     return count;
 }
 
-
-
 // Inicialitzar tot el programa
 window.onload = initialize;
