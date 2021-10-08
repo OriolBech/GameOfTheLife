@@ -1,25 +1,29 @@
+// obtenim el nom de la partida per recuperar la cookie
 var route = window.location.href;
 var nseed = route.split('?');
 nseed = nseed[1];
 
+// Variables per inicialitzar columnes, files i taulells
 var rows = getData("rows");
 var cols = getData("cols");
-
-var playing = false;
-var loaded = false;
-
 var grid = new Array(rows);
-var nextGrid = new Array(rows);
+var nextGrid = new Array(rows); 
 
-var comGen = getData("com");
+// Variables per saber si el joc esta en funcionament
+var playing = false;
 var timer;
+
+// Variable de velocitat
 var reproductionTime = 450;
-var generacio = document.getElementById("comGen");
+
+// Comptadors
+var comGen = getData("com");
 var comViues = 0;
 var comMortes = 0;
+var generacio = document.getElementById("comGen");
 generacio.innerHTML = comGen;
 
-//Comprovem si es la primera partida o ja esta començada, si no esta començada carreguem la configuracio.
+// Comprovem si es la primera partida o ja esta començada, si no esta començada carreguem la configuracio.
 function checkStartingCells() {
     if(getData("cells") != "empty") {
         grid = getData("cells");
@@ -39,7 +43,7 @@ function checkStartingCells() {
     }
 }
 
-// funcio per inicialitzar els taulells
+// Funcio per inicialitzar els taulells
 function initializeGrids() {
     for (var i = 0; i < rows; i++) {
         grid[i] = new Array(cols);
@@ -105,6 +109,8 @@ function createTable() {
     table.after(document.getElementById("control-menu"))
 }
 
+
+// control del clicks a les cel·les
 function cellClickHandler() {
     var rowcol = this.id.split("_");
     var row = rowcol[0];
@@ -121,6 +127,7 @@ function cellClickHandler() {
     
 }
 
+// Actualizar el grid
 function updateView() {
     comGen += 1;
     generacio.innerHTML = comGen;
@@ -140,14 +147,7 @@ function updateView() {
     }
 }
 
-function sliderVelocitat() {
-    var velocitat = document.getElementById("speed");
-
-    velocitat.oninput = function () {
-        reproductionTime = this.value * 90;
-    };
-  }
-
+//Inicialitzar tots els botons
 function setupControlButtons() {
 
     var startButton = document.getElementById('start');
@@ -161,6 +161,15 @@ function setupControlButtons() {
 
     var saveButton = document.getElementById("save");
     saveButton.onclick = saveData;
+}
+
+//funcio per controlar el slider de la velocitat
+function sliderVelocitat() {
+    var velocitat = document.getElementById("speed");
+
+    velocitat.oninput = function () {
+        reproductionTime = this.value * 90;
+    };
 }
 
 //realitzem un math.random per cada cel·la
@@ -212,12 +221,55 @@ function clearButtonHandler() {
 
 }
 
+
+
+// start/pause/continue el joc
+function startButtonHandler() {
+    if (playing) {
+        console.log("Pause the game");
+        playing = false;
+        this.innerHTML = "Continuar";
+        clearTimeout(timer);
+    } else {
+        console.log("Continue the game");
+        playing = true;
+        this.innerHTML = "Pausar";
+        play();
+    }
+}
+
+// Comptem el numero de cel·les viues i mortes per despres mostrar les estadistiques
+function countAliveDeadCells() {
+    for (var i = 0; i < rows; i++) {
+        for (var j = 0; j < cols; j++) {
+            if (grid[i][j] == 0) {
+                comMortes += 1;
+                document.getElementById("comDead").innerHTML = comMortes;
+            } else {
+                comViues += 1;
+                document.getElementById("comAlive").innerHTML = comViues;
+            }
+        }
+    }
+}
+
+// run el joc de la vida
+function play() {
+    computeNextGen();
+    
+    if (playing) {
+        timer = setTimeout(play, reproductionTime);
+    }
+}
+
+// guardar les dades a la cookie
 function saveData() {
     var value = JSON.stringify({'cells': grid, 'rows': rows, 'cols': cols, 'com': comGen, 'dateCreation': getData("dateCreation")});
     document.cookie = "&" + nseed + "=" + value;
     console.log(nseed + " Saved Data" + getCookie(nseed));
 }
 
+//Obtenim la cookie i utlitzem el decode per despres obtenir la informacio
 function getCookie(cname) {
     cname = "&" + cname; 
     let name = cname + "=";
@@ -235,49 +287,18 @@ function getCookie(cname) {
     return "";
 }
 
+// funcio per convertir el json que retorna la cookie i filtra les dades
 function getData (type) {
     var cookie = getCookie(nseed);
     var object = JSON.parse(cookie);
     return object[type];
 }
 
-function countAliveDeadCells() {
-    for (var i = 0; i < rows; i++) {
-        for (var j = 0; j < cols; j++) {
-            if (grid[i][j] == 0) {
-                comMortes += 1;
-                document.getElementById("comDead").innerHTML = comMortes;
-            } else {
-                comViues += 1;
-                document.getElementById("comAlive").innerHTML = comViues;
-            }
-        }
-    }
-}
-
-// start/pause/continue el joc
-function startButtonHandler() {
-    if (playing) {
-        console.log("Pause the game");
-        playing = false;
-        this.innerHTML = "Continuar";
-        clearTimeout(timer);
-    } else {
-        console.log("Continue the game");
-        playing = true;
-        this.innerHTML = "Pausar";
-        play();
-    }
-}
-
-// run el joc de la vida
-function play() {
-    computeNextGen();
-    
-    if (playing) {
-        timer = setTimeout(play, reproductionTime);
-    }
-}
+// NORMAS
+// Qualsevol cel·la amb menys de dos veins mort, per infrapoblacio
+// Qualsevol cel·la amb dos o tres veins viu a la seguent generacio.
+// Qualsevol cel·la amb mes de tres veins mort, per sobrepoblacio
+// Qualsevol cel·la amb exactament tres veins torna a viure, per reproduccio.
 
 //Apliquem les normas i pasem de generacio
 function computeNextGen() {
@@ -293,12 +314,7 @@ function computeNextGen() {
     updateView();
 }
 
-// NORMAS
-// Qualsevol cel·la amb menys de dos veins mort, per infrapoblacio
-// Qualsevol cel·la amb dos o tres veins viu a la seguent generacio.
-// Qualsevol cel·la amb mes de tres veins mort, per sobrepoblacio
-// Qualsevol cel·la amb exactament tres veins torna a viure, per reproduccio.
-
+// funcio per aplicar les normes del joc
 function applyRules(row, col) {
     var numNeighbors = countNeighbors(row, col);
     if (grid[row][col] == 1) {
@@ -310,12 +326,13 @@ function applyRules(row, col) {
             nextGrid[row][col] = 0;
         }
     } else if (grid[row][col] == 0) {
-            if (numNeighbors == 3) {
-                nextGrid[row][col] = 1;
-            }
+        if (numNeighbors == 3) {
+            nextGrid[row][col] = 1;
         }
     }
-    
+}
+
+// Comptem el veins
 function countNeighbors(row, col) {
     var count = 0;
     if (row-1 >= 0) {
