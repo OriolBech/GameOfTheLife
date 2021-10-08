@@ -193,7 +193,7 @@ function clearButtonHandler() {
     console.log("Clear the game: stop playing, clear the grid");
     
     playing = false;
-    var startButton = document.getElementById('Començar');
+    var startButton = document.getElementById('start');
     startButton.innerHTML = "Començar";    
     clearTimeout(timer);
     
@@ -256,7 +256,6 @@ function countAliveDeadCells() {
 // run el joc de la vida
 function play() {
     computeNextGen();
-    
     if (playing) {
         timer = setTimeout(play, reproductionTime);
     }
