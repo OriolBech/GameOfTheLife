@@ -193,8 +193,8 @@ function clearButtonHandler() {
     console.log("Clear the game: stop playing, clear the grid");
     
     playing = false;
-    var startButton = document.getElementById('start');
-    startButton.innerHTML = "Start";    
+    var startButton = document.getElementById('Començar');
+    startButton.innerHTML = "Començar";    
     clearTimeout(timer);
     
     comGen = 0;
